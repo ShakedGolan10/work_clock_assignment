@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Logs {
+  logId     String   @id @default(uuid())
+  userId    String
+  enterTime DateTime?
+  exitTime  DateTime?
+  createdAt DateTime @default(now())
+}

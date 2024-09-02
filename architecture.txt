@@ -1,0 +1,24 @@
+Database structure: 
+
+logs Table {
+    logId: string
+    userId: string
+    enterTime: Date
+    exitTime: Date
+    createdAt: Date
+}
+
+
+Data fetching flow: 
+    the sql raw query: {
+        SELECT *
+        FROM Orders
+        WHERE user_id = 123   -- Example user ID
+        ORDER BY created_at DESC
+        LIMIT 1;
+    } 
+    This query is for fetching the latest log created by a unique user.
+    
+    Logic: 
+        if the exitTime value is falsy - return the logId to the client with exitTime key set to false 
+        if the exitTime value is true -  create new log and return the logId with enterTime key set to false 

@@ -1,6 +1,6 @@
 // Import the Prisma client instance
 
-import prisma from "@/service/db.service"
+import prisma from "@/service/server/db.service"
 
 export async function getLog(userId: string) {
 
@@ -13,23 +13,23 @@ export async function getLog(userId: string) {
     }
   })
 
-  if (latestLog && latestLog.exitTime === null) {
-    return {
-      logId: latestLog.logId,
-      exitTime: false
-    }
-  } else {
+  if (!latestLog || (latestLog.enterTime && latestLog.exitTime)) { // In case there isnt a log or there is a log but it alrady full
     const newLog = await prisma.logs.create({
       data: {
         userId: userId,
       }
     })
-
     return {
       logId: newLog.logId,
-      enterTime: false
+      enterTime: false,
     }
-  }
+  } else if (latestLog && !latestLog.enterTime && !latestLog.exitTime) {
+    return {
+      logId: latestLog.logId,
+      enterTime: false,
+    }
+  } 
+  else if (latestLog && latestLog.enterTime) return { logId: latestLog.logId, enterTime: true}
 }
 
 export async function updateLog(logId: string, enterTime?: string, exitTime?: string) {

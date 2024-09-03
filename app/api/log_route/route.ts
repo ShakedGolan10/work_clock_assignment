@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { updateLog } from "@/service/logs.service";
 import { ApplyEntry } from "@/lib/req.types";
+import { updateLog } from "@/service/server/logs.service";
 
 export async function POST(req: ApplyEntry) {
     try {

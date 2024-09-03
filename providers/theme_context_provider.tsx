@@ -72,7 +72,8 @@ export function AppThemeProvider({ children } : {children: React.ReactNode}) {
             <ChangeThemeBtn />
             <Grid container columns={16} >
               {<Grid item xs visibility="hidden" />}
-            <Grid item sx={{display: 'flex', justifyContent: 'center'}} xs={screenSize === 'mobile' ? 14 : screenSize === 'tablet' ? 12 : 10}  > 
+            <Grid item sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh'}}
+             xs={screenSize === 'mobile' ? 14 : screenSize === 'tablet' ? 12 : 10}  > 
               {children}
             </Grid>
               {<Grid item xs visibility="hidden" />}

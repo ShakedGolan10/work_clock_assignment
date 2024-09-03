@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import { getLog } from "@/service/logs.service";
+import { getLog } from "@/service/server/logs.service";
 
 export async function GET(req: NextRequest, { params } : { params: Params }) {
     try {
